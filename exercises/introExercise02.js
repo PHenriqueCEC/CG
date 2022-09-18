@@ -16,6 +16,8 @@ material = setDefaultMaterial(); // create a basic material
 light = initDefaultBasicLight(scene); // Create a basic light to illuminate the scene
 orbit = new OrbitControls( camera, renderer.domElement ); // Enable mouse rotation, pan, zoom etc.
 
+let material2 = setDefaultMaterial('lightblue')
+let material3 = setDefaultMaterial('pink')
 // Listen window size changes
 window.addEventListener( 'resize', function(){onWindowResize(camera, renderer)}, false );
 
@@ -29,21 +31,29 @@ scene.add(plane);
 
 // create a cube
 let cubeGeometry = new THREE.BoxGeometry(4, 4, 4);
-let cubeGeometry2 = new THREE.BoxGeometry(2, 2, 2);
-let cubeGeometry3 = new THREE.BoxGeometry(1, 1, 1);
 let cube = new THREE.Mesh(cubeGeometry, material);
-let cube2 = new THREE.Mesh(cubeGeometry2, material);
-let cube3 = new THREE.Mesh(cubeGeometry3, material);
 
 // position the cube
 cube.position.set(0.0, 2.0, 0.0);
-cube2.position.set(6.0, 1.0, 2.0);
-cube3.position.set(2.0, 0.5, 4.0);
 
 // add the cube to the scene
 scene.add(cube);
-scene.add(cube2);
-scene.add(cube3)
+
+//sphere
+const sphereGeometry = new THREE.SphereGeometry( 2, 32, 16 );
+const sphere = new THREE.Mesh( sphereGeometry, material2);
+
+sphere.position.set(5.0, 2.0, 0.0)
+scene.add( sphere );
+
+//cilinder
+const geometry = new THREE.CylinderGeometry( 2.5, 2.5, 8, 32 );
+const cylinder = new THREE.Mesh( geometry, material3 );
+
+cylinder.position.set(-5.0, 4.0, 0.0)
+scene.add( cylinder );
+
+
 
 // Use this to show information onscreen
 let controls = new InfoBox();
