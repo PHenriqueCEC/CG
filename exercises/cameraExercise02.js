@@ -36,42 +36,30 @@ camera.up.copy(camUp);
 camera.lookAt(camLook);
 
 
+let cameraHolder = new THREE.Object3D();
+cameraHolder.add(camera);
+scene.add(cameraHolder);
+
+
+
 render();
 
 function updateCamera() {
    // DICA: Atualize a câmera aqui!
 
-   camera.position.x = camPos.x;
-   camera.position.y = camPos.y;
-   camera.position.z = camPos.z;
-
-   if(keyboard.pressed("W")) {
-      camLook.z += 0.5
-   }
-
-   else if(keyboard.pressed("A")) {
-      camLook.z -= 0.5
-   }
-
-   else if(keyboard.pressed("S")) {
-      camLook.x += 0.5
-   }
-
-   else if(keyboard.pressed("D")) {
-      camLook.x -= 0.5
-   }
-
-   else if(keyboard.pressed("Q")) {
-      camLook.y += 0.5
-   }
-
-   else if(keyboard.pressed("E")) {
-      camLook.y -= 0.5
-   }
-
-
-   camera.lookAt(camLook);
-
+   if(keyboard.pressed("right"))
+      cameraHolder.rotateY(0.3)
+   else if(keyboard.pressed("left"))
+      cameraHolder.rotateY(-0.3)
+   else if(keyboard.pressed("up"))
+      cameraHolder.rotateX(0.3)
+   else if(keyboard.pressed("down"))
+      cameraHolder.rotateX(-0.3)
+   else if(keyboard.pressed("Q"))
+      cameraHolder.rotateZ(0.3)
+   else if(keyboard.pressed("E"))
+      cameraHolder.rotateZ(-0.3)   
+  
 
    message.changeMessage("Pos: {" + camPos.x + ", " + camPos.y + ", " + camPos.z + "} " +
       "/ LookAt: {" + camLook.x + ", " + camLook.y + ", " + camLook.z + "}");
@@ -83,31 +71,18 @@ function keyboardUpdate() {
 
    // DICA: Insira aqui seu código para mover a câmera
 
-   if (keyboard.pressed("right")) {
-      camPos.x += 0.5;
-   }
-
-   else if (keyboard.pressed("left")) {
-      camPos.x -= 0.5;
-   }
-
-   else if (keyboard.pressed("up")) {
-      camLook.y += 0.5
-   }
-
-   else if(keyboard.pressed("down")) {
-      camPos.y -= 0.5
-   }
-
-   else if(keyboard.pressed('pageup')) 
-   {
-      camPos.z += 0.5;
-   }
-
-   else if(keyboard.pressed('pagedown')) {
-      camPos.z -= 0.5;
-   }
-
+   if(keyboard.pressed("B"))
+      cameraHolder.translateZ(0.1)
+   else if(keyboard.pressed("space"))
+      cameraHolder.translateZ(-0.1)
+   else if(keyboard.pressed("W"))
+      cameraHolder.translateY(0.1)
+   else if(keyboard.pressed("S"))
+      cameraHolder.translateY(-0.1)
+   else if(keyboard.pressed("A"))
+      cameraHolder.translateX(0.1)
+   else if(keyboard.pressed("D"))
+      cameraHolder.translateX(-0.1)
 
 
 
