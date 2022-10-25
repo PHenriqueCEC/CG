@@ -38,6 +38,19 @@ loadLightPostScene(scene)
 // REMOVA ESTA LINHA APÓS CONFIGURAR AS LUZES DESTE EXERCÍCIO
 initDefaultBasicLight(scene);
 
+let material = setDefaultMaterial("purple");
+let material2 = setDefaultMaterial("yellow")
+
+const cylinderGeometry = new THREE.CylinderGeometry( 0.2, 0.2, 1, 16 );
+const cylinder = new THREE.Mesh(cylinderGeometry, material );
+scene.add( cylinder );
+cylinder.position.set(0.9, 0.5, 2.5);
+
+const cylinder2 = new THREE.Mesh(cylinderGeometry, material2);
+cylinder2.position.set(0.9, 0.5, -1.5);
+scene.add(cylinder2);
+
+
 //---------------------------------------------------------
 // Load external objects
 buildInterface();
